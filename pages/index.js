@@ -1,45 +1,43 @@
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React from "react";
+import Head from "next/head";
+import Nav from "../components/nav";
+import "../components/assets/styles.scss";
 
 const Home = () => (
   <div>
     <Head>
       <title>Home</title>
-      <link rel='icon' href='/favicon.ico' />
+      <link rel="icon" href="/favicon.ico" />
     </Head>
 
     <Nav />
 
-    <div className='hero'>
-      <h1 className='title'>Welcome to Next.js!</h1>
-      <p className='description'>
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+    <div className="hero">
+      <h1 className="title">Leonardo Daiub</h1>
+      <p className="description">Software Developer</p>
 
-      <div className='row'>
-        <a href='https://nextjs.org/docs' className='card'>
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
+      <div className="row">
+        <a href="/projects" className="card">
+          <h3>Projetos</h3>
+          <p>Veja meus projetos anteriores!</p>
         </a>
-        <a href='https://nextjs.org/learn' className='card'>
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
+        <a href="/blog" className="card">
+          <h3>Blog</h3>
+          <p>Veja os artigos do meu blog!</p>
         </a>
-        <a
-          href='https://github.com/zeit/next.js/tree/master/examples'
-          className='card'
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
+        <a href="/contact" className="card">
+          <h3>Contato</h3>
+          <p>Quer entrar em contato comigo? clique aqui!</p>
         </a>
       </div>
     </div>
 
     <style jsx>{`
       .hero {
+        min-height: 100%;
         width: 100%;
-        color: #333;
+        color: #fff;
+        font-family: "McLaren", cursive;
       }
       .title {
         margin: 0;
@@ -64,7 +62,7 @@ const Home = () => (
         width: 220px;
         text-align: left;
         text-decoration: none;
-        color: #434343;
+        color: #fff;
         border: 1px solid #9b9b9b;
       }
       .card:hover {
@@ -79,10 +77,10 @@ const Home = () => (
         margin: 0;
         padding: 12px 0 0;
         font-size: 13px;
-        color: #333;
+        color: #fff;
       }
     `}</style>
   </div>
-)
+);
 
-export default Home
+export default Home;

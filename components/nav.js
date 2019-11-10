@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-const links = [
-  { href: "https://zeit.co/now", label: "ZEIT" },
-  { href: "https://github.com/zeit/next.js", label: "GitHub" }
-].map((link) => {
-  link.key = `nav-link-${link.href}-${link.label}`;
-  return link;
-});
+// const links = [
+//   { href: "https://zeit.co/now", label: "ZEIT" },
+//   { href: "https://github.com/zeit/next.js", label: "GitHub" }
+// ].map((link) => {
+//   link.key = `nav-link-${link.href}-${link.label}`;
+//   return link;
+// });
 
 const Nav = () => (
   <nav>
@@ -22,11 +22,21 @@ const Nav = () => (
           <a>Blog</a>
         </Link>
       </li>
-      {links.map(({ key, href, label }) => (
+      <li>
+        <Link href="/projects">
+          <a>Projetos</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/contact">
+          <a>Contatos</a>
+        </Link>
+      </li>
+      {/* {links.map(({ key, href, label }) => (
         <li key={key}>
           <a href={href}>{label}</a>
         </li>
-      ))}
+      ))} */}
     </ul>
 
     <style jsx>{`
@@ -40,7 +50,7 @@ const Nav = () => (
       }
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
       }
       nav > ul {
         padding: 4px 16px;
