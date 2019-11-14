@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, Button } from "@material-ui/core";
 import axios from "axios";
+import Router from "next/router";
 
 const useStyles = makeStyles({
   form: {
@@ -29,7 +30,11 @@ function Form(props) {
     e.preventDefault();
     console.log(values);
 
-    axios.post("/contact", values);
+    await axios.post(
+      "https://portfolio-leodaiub.herokuapp.com/contact",
+      values
+    );
+    Router.push("/");
     //props.submitForm();
   };
 
@@ -51,6 +56,7 @@ function Form(props) {
             margin="normal"
             fullWidth
             variant="filled"
+            required
             value={values.name}
             onChange={(e) => handleChange(e)}
           />
@@ -58,6 +64,7 @@ function Form(props) {
         <Grid item className={classes.textField}>
           <TextField
             id="filled-basic"
+            required
             label="E-mail"
             name="email"
             margin="normal"

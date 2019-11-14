@@ -16,7 +16,7 @@ es6promise.polyfill();
 function* loadDataProjects(action) {
   try {
     const data = yield axios.get(
-      `http://localhost:3333/projects?page=${action.payload}`
+      `https://portfolio-leodaiub.herokuapp.com/projects?page=${action.payload}`
     );
     // const data = yield res.json();
     yield put(projectSuccess(data.data));
@@ -28,7 +28,7 @@ function* loadDataProjects(action) {
 function* loadDataBlogs(action) {
   try {
     const data = yield axios.get(
-      `http://localhost:3333/posts?page=${action.payload}`
+      `https://portfolio-leodaiub.herokuapp.com/posts?page=${action.payload}`
     );
     // const data = yield res.json();
     yield put(blogSuccess(data.data));
