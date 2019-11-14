@@ -10,7 +10,11 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: 345
+    margin: "0 auto",
+    backgroundColor: "rgba(0, 0, 50, 0.50)",
+    maxWidth: 250,
+    color: "#fff",
+    border: "1px solid #fff"
   },
   media: {
     height: 140
@@ -22,7 +26,7 @@ const useStyles = makeStyles({
 function Posts(props) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} key={props.data.id}>
       <CardActionArea>
         <CardMedia
           className={classes.media}

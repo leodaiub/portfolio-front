@@ -32,8 +32,8 @@ export function blogFailure(error) {
   };
 }
 
-export function blogRequest() {
-  return { type: actionTypes.BLOGS_REQUEST };
+export function blogRequest(data) {
+  return { type: actionTypes.BLOGS_REQUEST, payload: data };
 }
 
 export function blogSuccess(data) {

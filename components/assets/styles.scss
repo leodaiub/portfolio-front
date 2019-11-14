@@ -100,9 +100,24 @@ html {
 }
 
 #__next {
-  background-image: url("./images/subtle_carbon.png");
+  background-image: url("./images/bg.jpg");
   min-height: 100%;
-  background-color: #333;
+}
+
+.pagination {
+  padding: 50;
+  display: flex;
+
+  flex-direction: row;
+  color: white;
+}
+
+.pagination li {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
 }
 
 /* HTML5 display-role reset for older browsers */

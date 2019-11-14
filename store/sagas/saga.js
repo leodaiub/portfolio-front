@@ -13,10 +13,10 @@ import {
 
 es6promise.polyfill();
 
-function* loadDataProjects() {
+function* loadDataProjects(action) {
   try {
     const data = yield axios.get(
-      "https://portfolio-leodaiub.herokuapp.com/projects"
+      `http://localhost:3333/projects?page=${action.payload}`
     );
     // const data = yield res.json();
     yield put(projectSuccess(data.data));
@@ -25,10 +25,10 @@ function* loadDataProjects() {
   }
 }
 
-function* loadDataBlogs() {
+function* loadDataBlogs(action) {
   try {
     const data = yield axios.get(
-      "https://portfolio-leodaiub.herokuapp.com/posts"
+      `http://localhost:3333/posts?page=${action.payload}`
     );
     // const data = yield res.json();
     yield put(blogSuccess(data.data));

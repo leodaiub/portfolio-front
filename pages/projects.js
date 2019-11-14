@@ -5,6 +5,7 @@ import "../components/assets/styles.scss";
 import Posts from "../components/project";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
+import ReactPaginate from "react-paginate";
 
 import { projectRequest, blogRequest } from "../store/actions";
 
@@ -15,86 +16,59 @@ function Home(props) {
       await props.dispatch(blogRequest());
     }
     fetchData();
-    console.log(props);
   }, []);
 
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>Projetos</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Nav />
-
-      <Grid container spacing={2}>
-        {props.projects.map(project => (
-          <Grid item sm={3}>
-            <Posts data={project}></Posts>
-          </Grid>
-        ))}
-      </Grid>
+      <div className="grid">
+        <Grid container spacing={2} justify="center" sm={8}>
+          {props.projects.data.map((project) => (
+            <Grid item sm={4}>
+              <Posts data={project}></Posts>
+            </Grid>
+          ))}
+        </Grid>
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={props.projects.lastPage}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={`this.handlePageClick`}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
+      </div>
 
       <style jsx>{`
-        .hero {
-          min-height: 100%;
-          width: 100%;
-          color: #fff;
-          font-family: "McLaren", cursive;
-        }
-        .title {
-          margin: 0;
-          width: 100%;
-          padding-top: 80px;
-          line-height: 1.15;
-          font-size: 48px;
-        }
-        .title,
-        .description {
-          text-align: center;
-        }
-        .row {
-          max-width: 880px;
-          margin: 80px auto 40px;
+        .grid {
           display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .card {
-          padding: 18px 18px 24px;
-          width: 220px;
-          text-align: left;
-          text-decoration: none;
-          color: #fff;
-          border: 1px solid #9b9b9b;
-        }
-        .card:hover {
-          border-color: #067df7;
-        }
-        .card h3 {
-          margin: 0;
-          color: #067df7;
-          font-size: 18px;
-        }
-        .card p {
-          margin: 0;
-          padding: 12px 0 0;
-          font-size: 13px;
-          color: #fff;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
     </div>
   );
 }
 
-Home.getInitialProps = props => {
+Home.getInitialProps = (props) => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
     store.dispatch(projectRequest());
   }
-  console.log(store);
+
   return { isServer };
 };
 
-export default connect(state => state)(Home);
+export default connect((state) => state)(Home);
