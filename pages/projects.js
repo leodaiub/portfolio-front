@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import ReactPaginate from "react-paginate";
 
 import { projectRequest, blogRequest } from "../store/actions";
+import Footer from "../components/footer";
 
 function Home(props) {
   useEffect(() => {
@@ -28,26 +29,28 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.projects.data.map((project) => (
+          {props.projects.data.map(project => (
             <Grid item sm={4}>
               <Posts data={project}></Posts>
             </Grid>
           ))}
         </Grid>
         <ReactPaginate
-          previousLabel={"previous"}
-          nextLabel={"next"}
+          previousLabel={"Pág. anterior"}
+          nextLabel={"Próxima pág."}
           breakLabel={"..."}
           breakClassName={"break-me"}
           pageCount={props.projects.lastPage}
           marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={2}
           onPageChange={`this.handlePageClick`}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
       </div>
+
+      <Footer></Footer>
 
       <style jsx>{`
         .grid {
@@ -61,7 +64,7 @@ function Home(props) {
   );
 }
 
-Home.getInitialProps = (props) => {
+Home.getInitialProps = props => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -71,4 +74,4 @@ Home.getInitialProps = (props) => {
   return { isServer };
 };
 
-export default connect((state) => state)(Home);
+export default connect(state => state)(Home);

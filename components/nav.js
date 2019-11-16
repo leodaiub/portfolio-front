@@ -1,65 +1,47 @@
 import React from "react";
-import Link from "next/link";
-
-// const links = [
-//   { href: "https://zeit.co/now", label: "ZEIT" },
-//   { href: "https://github.com/zeit/next.js", label: "GitHub" }
-// ].map((link) => {
-//   link.key = `nav-link-${link.href}-${link.label}`;
-//   return link;
-// });
+import Link from "./ActiveLink";
 
 const Nav = () => (
   <nav>
     <div>
       <Link href="/">
-        <p>{"<Leonardo Daiub />"}</p>
+        <p>{"<LEONARDO DAIUB />"}</p>
       </Link>
     </div>
 
     <ul>
       <li>
-        <Link href="/">
+        <Link href="/" activeClassName="active">
           <a>Home</a>
         </Link>
       </li>
       <li>
-        <Link href="/blog">
+        <Link href="/blog" activeClassName="active">
           <a>Blog</a>
         </Link>
       </li>
       <li>
-        <Link href="/projects">
+        <Link href="/projects" activeClassName="active">
           <a>Projetos</a>
         </Link>
       </li>
       <li>
-        <Link href="/contact">
+        <Link href="/contact" activeClassName="active">
           <a>Contato</a>
         </Link>
       </li>
-      {/* {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))} */}
     </ul>
 
     <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
       div {
-        border: 1px solid #53caff;
-        border-radius: 10px;
         padding: 1rem;
         color: #53caff;
         cursor: pointer;
+        font-weight: bold;
       }
+
       div:hover {
-        text-decoration: underline;
+        border-bottom: 2px solid #fff;
       }
       nav {
         padding: 0.5rem;
@@ -76,17 +58,14 @@ const Nav = () => (
         padding: 4px 16px;
       }
       li {
-        border-right: 1px solid #53caff;
-        border-right: 1px solid #53caff;
         display: flex;
-        padding: 6px 8px;
+        padding: 1rem;
         margin-right: 5px;
       }
-      li:nth-child(1) {
-        border-left: 1px solid #53caff;
-      }
+
       li:hover {
-        text-decoration: underline;
+        padding: 1rem;
+        border-bottom: 2px solid #fff;
       }
       a {
         color: #53caff;

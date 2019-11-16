@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import ReactPaginate from "react-paginate";
 
 import { projectRequest, blogRequest } from "../store/actions";
+import Footer from "../components/footer";
 
 function Home(props) {
   useEffect(() => {
@@ -18,7 +19,7 @@ function Home(props) {
     console.log(props);
   }, []);
 
-  const handlePageClick = (data) => {
+  const handlePageClick = data => {
     let selected = data.selected;
     // let offset = Math.ceil(selected * props.perPage);
 
@@ -37,40 +38,42 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.blogs.data.map((blog) => (
+          {props.blogs.data.map(blog => (
             <Grid item sm={4}>
               <Posts data={blog}></Posts>
             </Grid>
           ))}
         </Grid>
         <ReactPaginate
-          previousLabel={"previous"}
-          nextLabel={"next"}
+          previousLabel={"Pág. anterior"}
+          nextLabel={"Próxima pág."}
           breakLabel={"..."}
           breakClassName={"break-me"}
           pageCount={props.projects.lastPage}
           marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageClick}
+          pageRangeDisplayed={2}
+          onPageChange={`this.handlePageClick`}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
       </div>
 
+      <Footer></Footer>
+
       <style jsx>{`
         .grid {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
+          justify-content: space-around;
         }
       `}</style>
     </div>
   );
 }
 
-Home.getInitialProps = (props) => {
+Home.getInitialProps = props => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -80,4 +83,4 @@ Home.getInitialProps = (props) => {
   return { isServer };
 };
 
-export default connect((state) => state)(Home);
+export default connect(state => state)(Home);

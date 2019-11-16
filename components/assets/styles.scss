@@ -101,15 +101,17 @@ html {
 
 #__next {
   background-image: url("./images/bg.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   min-height: 100%;
 }
 
 .pagination {
+  margin: 1rem;
   padding: 50;
   display: flex;
-
+  cursor: pointer;
   flex-direction: row;
   color: white;
 }
@@ -122,6 +124,13 @@ html {
   flex-direction: row;
 }
 
+.pagination li.active {
+  border-bottom: 1px solid #fff;
+}
+
+.pagination li:hover {
+  border-bottom: 1px solid #fff;
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

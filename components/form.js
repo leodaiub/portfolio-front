@@ -7,14 +7,19 @@ import Router from "next/router";
 const useStyles = makeStyles({
   form: {
     margin: "0 auto",
-    width: 550,
-    color: "#fff",
-    border: "1px solid #fff"
+    width: 650,
+    color: "#fff"
   },
 
   textField: {
-    padding: 10,
-    backgroundColor: "#53caff"
+    padding: 0,
+    backgroundColor: "#fff"
+  },
+  button: {
+    backgroundColor: "#fff"
+  },
+  formGrid: {
+    padding: 30
   }
 });
 
@@ -26,7 +31,7 @@ function Form(props) {
     message: ""
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     console.log(values);
 
@@ -38,7 +43,7 @@ function Form(props) {
     //props.submitForm();
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValues({
       ...values,
       [event.target.name]: event.target.value
@@ -46,51 +51,60 @@ function Form(props) {
   };
 
   return (
-    <form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
-      <Grid justify="center" container direction="column">
-        <Grid item className={classes.textField}>
+    <form className={classes.form} onSubmit={e => handleSubmit(e)}>
+      <Grid
+        justify="space-around"
+        container
+        direction="column"
+        spacing={2}
+        className={classes.formGrid}
+      >
+        <Grid item>
           <TextField
-            id="filled-basic"
+            className={classes.textField}
+            id="outlined-basic"
             label="Nome"
             name="name"
             margin="normal"
             fullWidth
-            variant="filled"
+            variant="outlined"
             required
             value={values.name}
-            onChange={(e) => handleChange(e)}
+            onChange={e => handleChange(e)}
           />
         </Grid>
-        <Grid item className={classes.textField}>
+        <Grid item>
           <TextField
-            id="filled-basic"
+            className={classes.textField}
+            id="outlined-basic"
             required
             label="E-mail"
             name="email"
             margin="normal"
             fullWidth
             type="email"
-            variant="filled"
+            variant="outlined"
             value={values.email}
-            onChange={(e) => handleChange(e)}
+            onChange={e => handleChange(e)}
           />
         </Grid>
-        <Grid item className={classes.textField}>
+        <Grid item>
           <TextField
-            id="filled-basic"
+            className={classes.textField}
+            id="outlined-basic"
             label="Mensagem"
             margin="normal"
-            variant="filled"
+            variant="outlined"
             multiline
             name="message"
             fullWidth
             rows={6}
             value={values.message}
-            onChange={(e) => handleChange(e)}
+            onChange={e => handleChange(e)}
           />
         </Grid>
-        <Grid item className={classes.textField}>
-          <Button type="submit" fullWidth>
+        <Grid item>
+          <Button type="submit" fullWidth className={classes.button}>
             Enviar
           </Button>
         </Grid>

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 import { projectRequest, blogRequest } from "../store/actions";
 import Link from "next/link";
+import Footer from "../components/footer";
 
 function Home(props) {
   useEffect(() => {
@@ -29,7 +30,7 @@ function Home(props) {
 
       <div className="hero">
         <h1 className="title">Leonardo Daiub</h1>
-        <p className="description">Software Developer</p>
+        <p className="description">Desenvolvedor de Software</p>
 
         <div className="row">
           <Link href="/projects">
@@ -52,14 +53,14 @@ function Home(props) {
           </Link>
         </div>
       </div>
-      <div className="footer">Developed with love and coffee by myself</div>
+
+      <Footer></Footer>
 
       <style jsx>{`
         .hero {
           padding: 0 auto;
           margin: 0 auto;
-          border: 1px dashed #53caff;
-          border-radius: 10px;
+
           height: 100%;
           width: 80%;
           margin-top: 5rem;
@@ -94,29 +95,31 @@ function Home(props) {
           width: 220px;
           text-align: left;
           text-decoration: none;
-          color: #53caff;
-          border: 1px solid #53caff;
+          color: #fff;
+          border: 2px solid #000000;
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 25px;
         }
         .card:hover {
           border-color: #067df7;
         }
         .card h3 {
           margin: 0;
-          color: #067df7;
+          color: #fff;
           font-size: 18px;
         }
         .card p {
           margin: 0;
           padding: 12px 0 0;
           font-size: 13px;
-          color: #53caff;
+          color: #fff;
         }
       `}</style>
     </div>
   );
 }
 
-Home.getInitialProps = (props) => {
+Home.getInitialProps = props => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -126,4 +129,4 @@ Home.getInitialProps = (props) => {
   return { isServer };
 };
 
-export default connect((state) => state)(Home);
+export default connect(state => state)(Home);

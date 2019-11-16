@@ -6,6 +6,7 @@ import Form from "../components/form";
 import { connect } from "react-redux";
 
 import { projectRequest, blogRequest } from "../store/actions";
+import Footer from "../components/footer";
 
 function Contact(props) {
   useEffect(() => {
@@ -28,6 +29,7 @@ function Contact(props) {
         <Form></Form>
       </div>
 
+      <Footer></Footer>
       <style jsx>{`
         .grid {
           display: flex;
@@ -38,7 +40,7 @@ function Contact(props) {
   );
 }
 
-Contact.getInitialProps = (props) => {
+Contact.getInitialProps = props => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -48,4 +50,4 @@ Contact.getInitialProps = (props) => {
   return { isServer };
 };
 
-export default connect((state) => state)(Contact);
+export default connect(state => state)(Contact);
