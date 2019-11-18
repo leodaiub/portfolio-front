@@ -9,6 +9,7 @@ import ReactPaginate from "react-paginate";
 
 import { projectRequest, blogRequest } from "../store/actions";
 import Footer from "../components/footer";
+import Link from "next/link";
 
 function Home(props) {
   useEffect(() => {
@@ -29,9 +30,11 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.projects.data.map(project => (
+          {props.projects.data.map((project) => (
             <Grid item sm={4}>
-              <Posts data={project}></Posts>
+              <Link href={`blog/${project.id}`}>
+                <Posts data={project}></Posts>
+              </Link>
             </Grid>
           ))}
         </Grid>
@@ -64,7 +67,7 @@ function Home(props) {
   );
 }
 
-Home.getInitialProps = props => {
+Home.getInitialProps = (props) => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -74,4 +77,4 @@ Home.getInitialProps = props => {
   return { isServer };
 };
 
-export default connect(state => state)(Home);
+export default connect((state) => state)(Home);

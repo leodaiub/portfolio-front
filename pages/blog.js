@@ -9,23 +9,16 @@ import ReactPaginate from "react-paginate";
 
 import { projectRequest, blogRequest } from "../store/actions";
 import Footer from "../components/footer";
+import Link from "next/link";
 
 function Home(props) {
   useEffect(() => {
-    async function fetchData() {
-      await props.dispatch(blogRequest());
-    }
-    fetchData();
-    console.log(props);
+    props.dispatch(blogRequest());
   }, []);
 
-  const handlePageClick = data => {
+  const handlePageClick = (data) => {
     let selected = data.selected;
-    // let offset = Math.ceil(selected * props.perPage);
-
-    // setState({ offset: offset }, () => {
     props.dispatch(blogRequest(selected + 1));
-    // });
   };
 
   return (
@@ -38,10 +31,12 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.blogs.data.map(blog => (
-            <Grid item sm={4}>
-              <Posts data={blog}></Posts>
-            </Grid>
+          {props.blogs.data.map((blog) => (
+            <Link href="/post/[pid]" as={`/post/${blog.id}`}>
+              <Grid item sm={4}>
+                <Posts data={blog}></Posts>
+              </Grid>
+            </Link>
           ))}
         </Grid>
         <ReactPaginate
@@ -73,7 +68,7 @@ function Home(props) {
   );
 }
 
-Home.getInitialProps = props => {
+Home.getInitialProps = (props) => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
@@ -83,4 +78,4 @@ Home.getInitialProps = props => {
   return { isServer };
 };
 
-export default connect(state => state)(Home);
+export default connect((state) => state)(Home);
