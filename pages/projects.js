@@ -14,11 +14,16 @@ import Link from "next/link";
 function Home(props) {
   useEffect(() => {
     async function fetchData() {
-      await props.dispatch(projectRequest());
-      await props.dispatch(blogRequest());
+      await props.dispatch(projectRequest(1));
+      await props.dispatch(blogRequest(1));
     }
     fetchData();
   }, []);
+
+  const handlePageClick = (data) => {
+    let selected = data.selected;
+    props.dispatch(blogRequest(selected + 1));
+  };
 
   return (
     <div>
@@ -50,7 +55,7 @@ function Home(props) {
           pageCount={props.projects.lastPage}
           marginPagesDisplayed={2}
           pageRangeDisplayed={2}
-          onPageChange={`this.handlePageClick`}
+          onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
@@ -75,7 +80,7 @@ Home.getInitialProps = (props) => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
-    store.dispatch(projectRequest());
+    store.dispatch(projectRequest(1));
   }
 
   return { isServer };

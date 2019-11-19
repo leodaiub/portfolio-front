@@ -13,7 +13,7 @@ import Link from "next/link";
 
 function Home(props) {
   useEffect(() => {
-    props.dispatch(blogRequest());
+    props.dispatch(blogRequest(1));
     console.log(props);
   }, []);
 
@@ -49,10 +49,10 @@ function Home(props) {
           nextLabel={"Próxima pág."}
           breakLabel={"..."}
           breakClassName={"break-me"}
-          pageCount={props.projects.lastPage}
+          pageCount={props.blogs.lastPage}
           marginPagesDisplayed={2}
           pageRangeDisplayed={2}
-          onPageChange={`this.handlePageClick`}
+          onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
@@ -77,7 +77,7 @@ Home.getInitialProps = (props) => {
   const { store, isServer } = props.ctx;
   // store.dispatch(tickClock(isServer));
   if (!store.getState().projects) {
-    store.dispatch(projectRequest());
+    store.dispatch(projectRequest(1));
   }
 
   return { isServer };
