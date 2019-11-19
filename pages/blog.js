@@ -14,6 +14,7 @@ import Link from "next/link";
 function Home(props) {
   useEffect(() => {
     props.dispatch(blogRequest());
+    console.log(props);
   }, []);
 
   const handlePageClick = (data) => {
@@ -31,13 +32,17 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.blogs.data.map((blog) => (
-            <Link href="/post/[pid]" as={`/post/${blog.id}`}>
-              <Grid item sm={4}>
-                <Posts data={blog}></Posts>
-              </Grid>
-            </Link>
-          ))}
+          {!props.loading ? (
+            props.blogs.data.map((blog) => (
+              <Link href="/post/[pid]" as={`/post/${blog.id}`}>
+                <Grid item sm={4}>
+                  <Posts data={blog}></Posts>
+                </Grid>
+              </Link>
+            ))
+          ) : (
+            <p>loading</p>
+          )}
         </Grid>
         <ReactPaginate
           previousLabel={"Pág. anterior"}

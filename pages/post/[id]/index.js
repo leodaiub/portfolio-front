@@ -22,7 +22,7 @@ function Blog(props) {
     !props.loading && (
       <div>
         <Head>
-          <title>{props && props.title}</title>
+          <title>{props && props.blog.title}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -30,9 +30,9 @@ function Blog(props) {
 
         <div className="hero">
           <Single
-            title={props.title}
+            title={props.blog.title}
             // image={props.image}
-            content={props.content}
+            content={props.blog.content}
           ></Single>
         </div>
 

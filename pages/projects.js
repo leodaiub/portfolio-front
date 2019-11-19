@@ -30,13 +30,17 @@ function Home(props) {
       <Nav />
       <div className="grid">
         <Grid container spacing={2} justify="center" sm={8}>
-          {props.projects.data.map((project) => (
-            <Grid item sm={4}>
-              <Link href={`blog/${project.id}`}>
-                <Posts data={project}></Posts>
+          {!props.loading ? (
+            props.projects.data.map((project) => (
+              <Link href="/project/[pid]" as={`/project/${project.id}`}>
+                <Grid item sm={4}>
+                  <Posts data={project}></Posts>
+                </Grid>
               </Link>
-            </Grid>
-          ))}
+            ))
+          ) : (
+            <p>loading</p>
+          )}
         </Grid>
         <ReactPaginate
           previousLabel={"Pág. anterior"}

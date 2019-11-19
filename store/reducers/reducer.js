@@ -6,7 +6,7 @@ export const exampleInitialState = {
   blogs: [],
   blog: {},
   project: {},
-  loading: false
+  loading: true
 };
 
 function reducer(state = exampleInitialState, action) {
