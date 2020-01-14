@@ -31,9 +31,9 @@ function Home(props) {
 
       <Nav />
       <div className="grid">
-        <Grid container spacing={2} justify="center" sm={8}>
+        <Grid container spacing={2} justify="center">
           {!props.loading ? (
-            props.blogs.data.map((blog) => (
+            props.blogs.map((blog) => (
               <Link href="/post/[pid]" as={`/post/${blog.id}`}>
                 <Grid item sm={4}>
                   <Posts data={blog}></Posts>
@@ -49,7 +49,7 @@ function Home(props) {
           nextLabel={"Próxima pág."}
           breakLabel={"..."}
           breakClassName={"break-me"}
-          pageCount={props.blogs.lastPage}
+          pageCount={props.blogs.length / 3}
           marginPagesDisplayed={2}
           pageRangeDisplayed={2}
           onPageChange={handlePageClick}

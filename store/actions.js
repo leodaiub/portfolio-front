@@ -21,7 +21,7 @@ export function projectFailure(error) {
 }
 
 export function projectRequest() {
-  return { type: actionTypes.PROJECTS_REQUEST };
+  return { type: actionTypes.PROJECTS_REQUEST, payload: 0 };
 }
 
 export function projectSuccess(data) {
@@ -39,7 +39,7 @@ export function blogFailure(error) {
 }
 
 export function blogRequest(data) {
-  return { type: actionTypes.BLOGS_REQUEST, payload: data };
+  return { type: actionTypes.BLOGS_REQUEST, payload: 0 };
 }
 
 export function blogSuccess(data) {

@@ -20,7 +20,7 @@ es6promise.polyfill();
 function* loadDataProjects(action) {
   try {
     const data = yield axios.get(
-      `https://portfolio-leodaiub.herokuapp.com/projects?page=${action.payload}`
+      `https://api-portfolioblog-leodaiub.herokuapp.com/projects?_start=${action.payload}&_limit=3`
     );
 
     yield put(projectSuccess(data.data));
@@ -32,7 +32,7 @@ function* loadDataProjects(action) {
 function* loadDataBlogs(action) {
   try {
     const data = yield axios.get(
-      `https://portfolio-leodaiub.herokuapp.com/posts?page=${action.payload}`
+      `https://api-portfolioblog-leodaiub.herokuapp.com/posts?_start=${action.payload}&_limit=3`
     );
 
     yield put(blogSuccess(data.data));
@@ -44,7 +44,7 @@ function* loadDataBlogs(action) {
 function* loadDataBlog(action) {
   try {
     const data = yield axios.get(
-      `https://portfolio-leodaiub.herokuapp.com/posts/${action.payload}`
+      `https://api-portfolioblog-leodaiub.herokuapp.com/posts/${action.payload}`
     );
 
     yield put(singleBlogSuccess(data.data));
@@ -56,7 +56,7 @@ function* loadDataBlog(action) {
 function* loadDataProject(action) {
   try {
     const data = yield axios.get(
-      `https://portfolio-leodaiub.herokuapp.com/projects/${action.payload}`
+      `https://api-portfolioblog-leodaiub.herokuapp.com/projects/${action.payload}`
     );
 
     yield put(singleProjectSuccess(data.data));
